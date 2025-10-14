@@ -1,19 +1,31 @@
 import React from 'react';
-import { useFind, useSubscribe } from 'meteor/react-meteor-data';
-import { Links } from '../../both';
-
+import { useTracker } from 'meteor/react-meteor-data/suspense';
+import { Comments, Fruits, Links, Posts, Powerups, Tasks } from '../../both';
+import { Hello } from './Hello';
 
 
 export const Info = () => {
-  const isLoading = useSubscribe('links');
-  const links = useFind(() => Links.find());
+  const links = useTracker("links", () => Links.find().fetchAsync());
+  const specificLink = useTracker("specificLink", () => Links.findOneAsync({url: "https://guide.meteor.com"}));
 
-  if(isLoading()) {
-    return <div>Loading...</div>;
-  }
+  const tasks = useTracker("tasks", () => Tasks.find().fetchAsync());
+  const specificTask = useTracker("specificTask", () => Tasks.findOneAsync({importance: 2}));
+
+  const powerups = useTracker("powerups", () => Powerups.find().fetchAsync());
+  const specificPowerup = useTracker("specificPowerup", () => Powerups.findOneAsync({name: 'Speed Boost'}));
+
+  const fruits = useTracker("fruits", () => Fruits.find().fetchAsync());
+  const specificFruit = useTracker("specificFruit", () => Fruits.findOneAsync({taste: 'sour'}));
+
+  const posts = useTracker("posts", () => Posts.find().fetchAsync());
+  const specificPost = useTracker("post", () => Posts.findOneAsync({author: 'Admin'}))
+
+  const comments = useTracker("comments", () => Comments.find().fetchAsync());
+  const specificComment = useTracker("specificComment", () => Comments.findOneAsync({user: 'Bob'}));  
 
   return (
     <div>
+      <Hello />
       <h2>Learn Meteor!</h2>
       <ul>{links.map(
         link => <li key={link._id}>

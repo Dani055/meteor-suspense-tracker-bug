@@ -1,11 +1,11 @@
 import schema from "./schema";
 
-const SyncLogs = new Mongo.Collection('syncLogs');
+const Tasks = new Mongo.Collection('tasks');
 
 if(Meteor.isClient){
-    window.SyncLogs = SyncLogs;
+    window.Tasks = Tasks;
 }
 
-SyncLogs.attachSchema(schema);
+Tasks.attachSchema(schema);
 
-export default SyncLogs;
+export default Tasks;

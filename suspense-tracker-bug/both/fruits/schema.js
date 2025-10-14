@@ -2,13 +2,17 @@ import SimpleSchema from 'meteor/aldeed:simple-schema';
 import defaults from '../defaults';
 
 export default new SimpleSchema({
-  description: {
-    label: 'Description',
+  name: {
+    label: 'Name',
     type: String,
   },
-  importance: {
-    label: 'Importance',
-    type: Number,
+  color: {
+    label: 'Color',
+    type: String,
+  },
+  taste: {
+    label: 'Taste',
+    type: String,
   },
   ...defaults
 });
