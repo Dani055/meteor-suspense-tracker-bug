@@ -23,6 +23,10 @@ export const Info = () => {
   const comments = useTracker("comments", () => Comments.find().fetchAsync());
   const specificComment = useTracker("specificComment", () => Comments.findOneAsync({user: 'Bob'}));  
 
+  // Uncomment these to increase the loading time to > 60 seconds
+  // const comments2 = useTracker("comments2", () => Comments.find().fetchAsync());
+  // const comments3 = useTracker("comments3", () => Comments.find().fetchAsync());
+
   return (
     <div>
       <Hello />
