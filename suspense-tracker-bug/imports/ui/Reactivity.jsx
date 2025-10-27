@@ -21,7 +21,7 @@ export const Reactivity = () => {
             <p>rating: {firstComment.rating}</p>
         </div>
         <br></br>
-      <ul>{comments.map(
+      <ul>{comments?.map(
         comment =>         <div>
             <p>id: {comment._id}</p>
             <p>user: {comment.user}</p>
