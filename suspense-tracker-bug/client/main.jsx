@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Meteor } from 'meteor/meteor';
 import { App } from '/imports/ui/App';
 
 Meteor.startup(() => {
+  
   const container = document.getElementById('react-target');
   const root = createRoot(container);
   Meteor.subscribe('links');
@@ -13,5 +14,5 @@ Meteor.startup(() => {
   Meteor.subscribe('posts');
   Meteor.subscribe('comments');
 
-  root.render(<App />);
+  root.render(<Suspense fallback={<p>Loading subs...</p>}><App /></Suspense>);
 });

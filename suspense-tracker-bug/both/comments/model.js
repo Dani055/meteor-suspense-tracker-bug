@@ -9,4 +9,9 @@ if(Meteor.isClient){
 
 Comments.attachSchema(schema);
 
+Comments.findAll = async () => {
+    const comments = await Comments.find().fetchAsync()
+    return comments;
+}
+
 export default Comments;
