@@ -10,7 +10,7 @@ export const Reactivity = () => {
     const first = await Comments.findOneAsync({rating: 5})
 
     // Function attached to the Comments model that internally calls .find.fetchAsync(). This is NOT reactive
-    const allComments = Comments.findAll();
+    const allComments = await Comments.findAll();
     // This works, but becomes very annoying to write everywhere
     // const allComments = await Tracker.withComputation(c, () => Comments.findAll())
     return [first, allComments];
