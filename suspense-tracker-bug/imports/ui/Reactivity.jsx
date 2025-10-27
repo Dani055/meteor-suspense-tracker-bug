@@ -6,7 +6,10 @@ import { Tracker } from 'meteor/tracker';
 export const Reactivity = () => {
 
   const [firstComment, comments] = useTracker("comments", (c) => Tracker.withComputation(c, async () => {
+    // This is reactive
     const first = await Comments.findOneAsync({rating: 5})
+
+    // Function attached to the Comments model that internally calls .find.fetchAsync(). This is NOT reactive
     const allComments = await Comments.findAll()
     return [first, allComments];
   }));
