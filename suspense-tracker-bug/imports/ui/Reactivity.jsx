@@ -1,6 +1,6 @@
 import React from 'react';
-import { useTracker, useSubscribe } from 'meteor/react-meteor-data/suspense';
-import { Comments, Fruits, Links, Posts, Powerups, Tasks } from '../../both';
+import { useTracker } from 'meteor/react-meteor-data/suspense';
+import { Comments } from '../../both';
 import { Tracker } from 'meteor/tracker';
 
 export const Reactivity = () => {
@@ -10,7 +10,9 @@ export const Reactivity = () => {
     const first = await Comments.findOneAsync({rating: 5})
 
     // Function attached to the Comments model that internally calls .find.fetchAsync(). This is NOT reactive
-    const allComments = await Comments.findAll()
+    const allComments = Comments.findAll();
+    // This works, but becomes very annoying to write everywhere
+    // const allComments = await Tracker.withComputation(c, () => Comments.findAll())
     return [first, allComments];
   }));
 
